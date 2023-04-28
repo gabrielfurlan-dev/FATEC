@@ -1,0 +1,7 @@
+###FOREIGN KEY
+ - Tabelas com cardinalidade N sempre recebe chave estrangeira
+		
+#MODE
+Cascate - Altera os dados de todas das referencias tabelas
+Restrict - Não permite a alteracao dos dados
+

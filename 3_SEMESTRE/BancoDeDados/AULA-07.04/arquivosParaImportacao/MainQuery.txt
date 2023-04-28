@@ -1,0 +1,84 @@
+-- Scrpit para o banco de dados Aula
+
+-- Criando uma tebela
+CREATE TABLE cargo(
+	idcar INT NOT NULL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,
+	salario DECIMAL(10,2)
+);
+
+-- Consultar Tabela Cargo
+SELECT * FROM cargo;
+
+--Consultar Campos Especificos
+SELECT  nome, salario FROM Cargo;
+
+--Consulta com filtro
+SELECT  * FROM Cargo WHERE nome='WebDesign';
+
+--Consulta com filtro
+SELECT  * FROM cargo WHERE nome like 'P%';
+
+--Consulta com ordenação decrescente
+SELECT * FROM cargo ORDER BY nome;
+
+--Consulta com limite de linhas
+SELECT * FROM Cargo LIMIT 3;
+
+-- Inserir dados na tabela cargo
+-- 1º Sintaxe
+INSERT INTO cargo(idcar, nome, salario)
+VALUES(1, 'Gerente TI', 10000.00);
+
+-- 2º Sintaxe
+INSERT INTO cargo VALUES(2, 'Programador', 6500.00 );
+
+-- Alteração de Dados
+UPDATE Cargo SET nome
+
+--Importar Dados para tabela cargos
+COPY Cargo from 'C:\Data\Data.txt';
+
+-- Apaga a tabela
+DROP TABLE Cargo;
+
+-- Deleta os dados da tabela
+DELETE * FROM Cargo;
+
+-- Altera estrutura da tabela
+ALTER TABLE Cargo ADD Adicional DECIMAL(10,2);
+
+-- Renomear tabela
+ALTER TABLE Cargo RENAME Nome To nome_cargo;
+
+
+
+-- Exercicios
+-- Ex 001
+-- Criar uma tabela
+
+-- Ex 002
+-- Inserir dados em uma tabela
+
+-- Ex 003
+-- Consulta dados em uma tabela
+
+-- Ex004
+-- Alterar os dados da tabela
+
+-- Ex005
+-- Apaga os dados de uma tabela
+
+-- Ex006
+-- Alterar as colunas de uma tabela
+
+-- Ex007
+ALTER TABLE Cargo ADD Sigla VARCHAR(3);
+
+-- Ex008
+UPDATE Cargo SET Sigla = 'GTI' WHERE ID=1
+UPDATE Cargo SET Sigla = 'PRO' WHERE ID=2
+UPDATE Cargo SET Sigla = 'WED' WHERE ID=3
+UPDATE Cargo SET Sigla = 'ATI' WHERE ID=4
+UPDATE Cargo SET Sigla = 'DBA' WHERE ID=5
+UPDATE Cargo SET Sigla = 'STI' WHERE ID=7

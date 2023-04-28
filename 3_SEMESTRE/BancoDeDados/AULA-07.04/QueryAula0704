@@ -1,0 +1,153 @@
+-- Script para o banco de dados Aula
+
+-- Criar uma tabela
+create table cargo (
+idcar	int not null primary key,
+nome	varchar(50) not null,
+salario	decimal(10,2)	
+);
+
+-- Consultar a tabela cargo
+select * from cargo;
+
+select nome, salario from cargo;
+
+-- Inserir dados na tabela cargo
+-- 1ª sintaxe
+insert into cargo (idcar, nome, salario)
+values (1, 'Gerente TI', 10000.00);
+
+-- 2ª sintaxe
+insert into cargo values (2, 'Programador', 6500.00);
+
+-- Importar dados para a tabela cargo
+copy cargo from 'c:\temp\cargo.txt';
+
+-- Consulta com filtragem na tabela cargo
+select * from cargo where nome='Web design';
+
+-- Consulta com ordenação crescente
+select * from cargo order by nome asc;
+
+-- Consulta com ordenação decrescente
+select * from cargo order by nome desc;
+
+-- Consulta com limite de linhas
+select * from cargo limit 3;
+
+-- Alteração de dados na tabela cargo
+update cargo set nome='Administrador Redes' where idcar=6;
+
+-- Consulta ordenando pelo idcar
+select * from cargo order by idcar asc;
+
+-- Apagar registros (linhas) na tabela cargo
+delete from cargo where idcar=6;
+
+--Alterar a estrutura da tabela cargo
+alter table cargo add adicional decimal(10,2);
+
+alter table cargo drop adicional;
+
+alter table cargo rename nome to nomecar;
+
+--Exercícios do arquivo 9
+
+/* 
+comentário em bloco
+*/
+
+ALTER TABLE cargo ADD sigla VARCHAR(3);
+
+UPDATE cargo SET sigla = 'GTI' WHERE idCar = 1;
+UPDATE cargo SET sigla = 'PRO' WHERE idCar = 2;
+UPDATE cargo SET sigla = 'WED' WHERE idCar = 3;
+UPDATE cargo SET sigla = 'ATI' WHERE idCar = 4;
+UPDATE cargo SET sigla = 'DBA' WHERE idCar = 5;
+UPDATE cargo SET sigla = 'STI' WHERE idCar = 7;
+
+-- Arquivo 10
+
+-- Criação da tabela funcionário
+create table funcionario(
+idfun	int not null primary key,
+nome	varchar(50) not null,
+cpf		varchar(20) not null unique,
+idcar	int references cargo(idcar) on update restrict on delete restrict
+);
+
+--Consultar a tabela funcionário
+select * from funcionario order by idcar asc;
+
+--Importando dados para a tabela funcionário
+copy funcionario from 'c:\temp\funcionario.txt';
+
+-- Consulta entre tabelas funcionario e cargo (usando ON, USING e NATURAL)
+SELECT f.idfun, f.nome, c.idCar, c.nomeCar
+FROM funcionario f
+--INNER JOIN cargo c USING(idCar)
+INNER JOIN cargo c ON c.idCar = f.idCar
+
+
+-- Cria tabela dependente e depFunc
+CREATE TABLE dependente (
+idDep INT NOT NULL PRIMARY KEY,
+NOME VARCHAR(100),
+dataNasc DATE
+);
+
+CREATE TABLE depFunc (
+	idDepFunc INT NOT NULL PRIMARY KEY,
+	idFun INT REFERENCES funcionario(idFun)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT,
+	
+	idDep INT REFERENCES dependente(idDep)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+);
+
+--INSERT EM MASSA
+COPY funcionario FROM 'C:\imports\funcionario.txt'
+
+COPY dependente FROM 'C:\imports\dependente.txt'
+
+COPY depFunc FROM 'C:\imports\depfunc.txt'
+
+--SELECT COM TOODOS INNERS
+SELECT f.idFun, f.nome, f.cpf, c.nomecar
+FROM funcionario f
+FULL JOIN DepFunc df ON f.idfun = df.idfun
+FULL JOIN Dependente d ON df.idDep = d.idDep
+FULL JOIN cargo c ON f.idCar = c.idcar
+
+INSERT INTO funcionario values(6, 'Antonio Perez', '666777888-66')
+SELECT * FROM funcionario
+
+
+--USANDO LEFT OUTER JOIN
+SELECT f.idfun, f.nome, c.idcar, c.nomecar
+FROM FUNCIONARIO f
+--LEFT OUTER JOIN cargo c on f.idcar = c.idcar
+--RIGHT OUTER JOIN cargo c on f.idcar = c.idcar
+FULL OUTER JOIN cargo c on f.idCar = c.idCar
+
+--USANDO AVG, SUM, MIN E MAX
+SELECT SUM(c.salario) as "salario" 
+FROM funcionario f
+INNER JOIN cargo c ON c.idcar = f.idcar
+
+SELECT AVG(c.salario) as "salario" 
+FROM funcionario f
+INNER JOIN cargo c ON c.idcar = f.idcar
+
+SELECT COUNT(idfun) as "funcionarios" 
+FROM funcionario
+
+SELECT MIN(c.salario) as "salario" 
+FROM funcionario f
+INNER JOIN cargo c ON c.idcar = f.idcar
+
+SELECT MAX(c.salario) as "salario" 
+FROM funcionario f
+INNER JOIN cargo c ON c.idcar = f.idcar

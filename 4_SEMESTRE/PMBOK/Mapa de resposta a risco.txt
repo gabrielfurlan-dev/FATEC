@@ -1,0 +1,63 @@
+O que pode restringir o sucesso: (Riscos)
+
+Mapa de resposta a riscos(Para avaliar os riscos)
+que tenha ou não controle, e que possam fazer com que o projeto atrase ou desapareça
+
+Ex: 
+	Risco => Falta de profissional qualificados
+	
+	Avaliação =>
+		Peso (1 a 5)
+		Impacto: 5
+		Probabilidade: 3 (há 2 faculdades de tecnologia perto da empresa, então a probabilidade é baixa)
+		Criticidade: 4 (Média entre peso e impacto)
+		
+	O que podemos fazer para previnir(max. 3 linhas) =>
+	
+	Se o risco se consumar(acontecer), qual é a quantingência(plano b, rota alternativa)(max. 3-4 linha)? =>
+---------------------------------------------------------------------------------------
+
+###RISCO 1
+
+Risco: Jogo seletado com queda de popupaliridade
+
+Avaliação:
+	Impacto => 4.1
+	Probabilidade => 1.3
+	Criticidade => 2.5
+	
+Prevenção: Um jogo consolidado na comunidade, que tenha perspectiva de permanencia no cenário competitivo
+
+Rota alternativa: Pesquisar próximos jogos com potêncial de popularidade do cenário competitivo.
+
+
+###RISCO 2
+
+Risco: Falta de retorno (Conversão de clientes)
+
+Avaliação: 
+	Impaco => 4.005
+	Probabilidade => 3.2
+	Criticidade => 3.5
+	
+Prevenção:
+	- Se basear em estratégias de sucesso do mercado e aprender com os casos de fracasso.
+	- Não desembolsar todo o orçamento da campanha de publicidade de uma só vez, fazer testes e alterar as metodologias de acordo com os resultados obtidos. 
+	- Na escolha dos influencers para divulgação, priorizar sua imagem, credibilidade, público alvo ao invés de sua popularidade.
+	
+	
+###RISCO 3
+Risco: Insatisfação de clientes
+
+Avaliação:
+	Impacto => 5(beirando o 6), nossos valores estão baseados na aceitação do público.
+	Probabilidade => 2.3
+	Criticidade => 4.8
+
+Prevenção: 
+	- Pesquisa de satisfação(semanal, toda quarta)
+
+Rota alternativa: 
+	- Impossível.
+---------------------------------------------------------------------------------------
+Retornar pra sala: 22h10

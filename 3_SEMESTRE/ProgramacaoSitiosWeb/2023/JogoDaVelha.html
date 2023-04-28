@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        button {
+            width: 100px;
+            height: 100px;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5">
+                <h1>Jogo da Velha</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+                <div id="tabuleiro">
+                    <button id="0" class="btn btn-light btn-lg mb-2"></button>
+                    <button id="1" class="btn btn-light btn-lg mb-2"></button>
+                    <button id="2" class="btn btn-light btn-lg mb-2"></button>
+                    <br>
+                    <button id="3" class="btn btn-light btn-lg mb-2"></button>
+                    <button id="4" class="btn btn-light btn-lg mb-2"></button>
+                    <button id="5" class="btn btn-light btn-lg mb-2"></button>
+                    <br>
+                    <button id="6" class="btn btn-light btn-lg mb-2"></button>
+                    <button id="7" class="btn btn-light btn-lg mb-2"></button>
+                    <button id="8" class="btn btn-light btn-lg mb-2"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var jogadorAtual = "X";
+        var tabuleiro = ["", "", "", "", "", "", "", "", ""];
+        var botoes = document.getElementsByTagName("button");
+        for (var i = 0; i < botoes.length; i++) {
+            botoes[i].addEventListener("click", function () {
+                var id = this.getAttribute("id");
+                if (tabuleiro[id] == "") {
+                    tabuleiro[id] = jogadorAtual;
+                    this.innerHTML = jogadorAtual;
+                    if (verificarVencedor(tabuleiro, jogadorAtual)) {
+                        alert("O jogador " + jogadorAtual + " ganhou!");
+                        reiniciarJogo();
+                    } else if (verificarEmpate(tabuleiro)) {
+                        alert("Empate!");
+                        reiniciarJogo();
+                    } else {
+                        jogadorAtual = jogadorAtual == "X" ? "O" : "X";
+                    }
+                }
+            });
+        }
+
+        function verificarVencedor(tabuleiro, jogador) {
+            if (
+                (tabuleiro[0] == jogador && tabuleiro[1] == jogador && tabuleiro[2] == jogador) ||
+                (tabuleiro[3] == jogador && tabuleiro[4] == jogador && tabuleiro[5] == jogador) ||
+                (tabuleiro[6] == jogador && tabuleiro[7] == jogador && tabuleiro[8] == jogador) ||
+                (tabuleiro[0] == jogador && tabuleiro[3] == jogador && tabuleiro[6] == jogador) ||
+                (tabuleiro[1] == jogador && tabuleiro[4] == jogador && tabuleiro[7] == jogador) ||
+                (tabuleiro[2] == jogador && tabuleiro[5] == jogador && tabuleiro[8] == jogador) ||
+                (tabuleiro[0] == jogador && tabuleiro[4] == jogador && tabuleiro[8] == jogador) ||
+                (tabuleiro[2] == jogador && tabuleiro[4] == jogador && tabuleiro[6] == jogador)
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function verificarEmpate(tabuleiro) {
+            for (var i = 0; i < tabuleiro.length; i++) {
+                if (tabuleiro[i] == "") {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function reiniciarJogo() {
+            tabuleiro = ["", "", "", "", "", "", "", "", ""];
+            jogadorAtual = "X";
+            for (var i = 0; i < botoes.length; i++) {
+                botoes[i].innerHTML = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

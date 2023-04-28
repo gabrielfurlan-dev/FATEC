@@ -1,0 +1,100 @@
+<!--
+    2) Elaborar um programa que leia o nome e a idade de um atleta de um cube 
+    de natação. O programa deve exibir o nome com "-" abaixo das letras do nome
+    e acategoria do atleta, que pode ser 
+        "infantil" (até 12 anos), 
+        "Juvenil" (entre 13 e 18 anos)
+        "Adulto" (acima de 18 anos) 
+    
+    O programa deve conter as funções:
+
+        retornarTracos() - que receba um nome como parâmetro e retorne uma linha"-" 
+        para as letras do nome (nos espaços, manter os espaços).
+        
+        categorizarAluno() - que receba um numero como parâmetro e retorne a
+        categoria do aluno, conforme indicação no enunciado do exercício.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex002</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body class="bg-black text-white">
+    <div class="container">
+        <h1 class="mt-3 mb-3">Clube de natação</h1>
+        
+        <div>
+            <h5>Atleta</h5>
+            <input id="txtNome" type="text" class="form-control bg-dark text-white" placeholder="insira o nome">
+            <h5 class="mt-3">Idade</h5>
+            <input id="numIdade" type="number" class="form-control bg-dark text-white" placeholder="insira a idade">
+        </div>
+        
+        <div class="mt-4 col">
+            <button id="btnCategorizarAluno" type="button" class="btn btn-primary" onclick="ExibirECategorizarAluno()">Categorizar Aluno</button>
+            <button id="btnLimpar" type="button" class="btn btn-secondary" onclick="LimparCampos()">Limpar</button>
+        </div>
+
+        <div class="mt-3">
+            <p class="mb-0" id="lblNomeAtleta" style="font-family: monospace"></p>
+            <p class="" id="lblTracos" style="font-family: monospace"></p>
+            <p class="" id="lblCategoria"></p>
+        </div>
+    </div>
+</body>
+<script>
+    function LimparCampos(){
+        document.getElementById("lblNomeAtleta").innerHTML = "";
+        document.getElementById("lblTracos").innerHTML = "";
+        document.getElementById("lblCategoria").innerHTML = "";
+        
+        document.getElementById("txtNome").value = "";
+        document.getElementById("numIdade").value = "";
+    }
+    
+    function RetornarTracos(nome){
+        let arrayNome = nome.split('')
+
+        for (let i = 0; i < arrayNome.length; i++) {
+                if (arrayNome[i] != " ") {
+                    document.getElementById("lblTracos").innerHTML += "-";
+                    continue;
+                }
+                document.getElementById("lblTracos").innerHTML += " ";
+        }
+    }
+
+    function CategoriaAluno(idade){
+
+        categoria = "Adulto";
+
+        if (idade <= 18) categoria = "Juvenil" 
+        if (idade <= 12) categoria = "infantil";
+        console.log(categoria)
+        document.getElementById("lblCategoria").innerHTML = `Categoria: ${categoria}`;
+    }
+
+    function ExibirECategorizarAluno(){
+        let nome = document.getElementById("txtNome").value;
+        let idade = parseInt(document.getElementById("numIdade").value)
+
+        LimparCampos()
+
+        if (nome == "" || nome == null || isNaN(idade)) {
+            document.getElementById("lblCategoria").innerHTML = "Preencha os campos corretamente.";
+            return;
+        }
+        
+        document.getElementById("lblNomeAtleta").innerHTML = nome;
+        RetornarTracos(nome)
+        CategoriaAluno(idade);
+    }
+
+    
+</script>
+</html>

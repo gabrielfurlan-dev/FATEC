@@ -1,0 +1,26 @@
+FIROFLEX
+
+
+###Contratar um time de desenvolvedor
+- Contatar uma instituição de ensino, em busca de profissionais.
+- Divulgar nas redes sociais
+- Realizar um processo seletivo
+- Capcitar os desenvolvedores com cursos e plano de desenvolvimento pessoal
+
+###Desenvolver conteudo de ensino
+- Estudar o jogo escolhido
+- Separar os pontos mais importar
+- Criar um roadmap do conteudo
+- Criar um conteudo
+
+###Apresentar um sistema de metricas de ensino de acordo com a rotina de treinamento dos jogadores
+- Criar um formulário que definira o perfil do usuário e o tempo disponivel para as atividades
+- Cria um rotina de treino de acordo com o perfil de cada usuario
+- Desenvolver o sistema de metricas com graficos e estatisticas do desempenho do usuario
+- Desenvolver um sistema expectativa/estimativa de progresso
+
+###Criar um sistema de gamificacao e ranking
+- Criar recompensas para os primeiros colocados da temporada
+- Criar um sistema de recompensa por completar modulos de estudos e treinos
+- Criar sistema de duelo entre os usuarios para aumentarem seus pontos
+- Criar uma lojinho que o usuario podera trocar pontos por recompensas

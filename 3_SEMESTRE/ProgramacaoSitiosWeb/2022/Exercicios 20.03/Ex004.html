@@ -1,0 +1,101 @@
+<!--
+    4) Elaborar um programa para uma veterinária, o qual leia o preço
+    de uma vacina e se o cliente possui ou não convênio. 
+    Caso possua algum convênio, exibir uma caixade seleção com os
+    convênios "Amigo dos Animais" e "SaúdeAnimal".
+    O programadeve exibir o valor do desconto 
+    (10% sem convênio; 20% para Amigo dos Animais":50% para 
+    "Saúde Animal") e o valor a ser pago.
+     
+    Criar a função:
+        calcularDesconto() - que receba os parâmetros valor e
+        taxa de desconta.Retornar o valor do desconto.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex004</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="bg-black text-white">
+    <div class="container p-3">
+        <h1 class="mt-5 mb-3">Clínica veterinaria</h1>
+
+        <div>
+            <h5>Preço da vacina</h5>
+            <input id="numPrecoDaVacina" type="number" class="form-control bg-black text-white"
+                placeholder="insira o preço da vacina">
+        </div>
+
+        <!-- <div class="input-group mt-2"> -->
+        <div class="input-group-text mt-3 bg-black text-white">
+            <input class="form-check-input mt-0" type="checkbox" id="chkPossuiConvenio" onchange="PossuiConvenio()">
+            <p class="ms-3 mt-3">Possui convênio</p>
+        </div>
+
+        <form class="mt-3" style="visibility:hidden;" id="formConvenios">
+            <input class="-check-input" id="rdAmigoDosAnimais" type="radio" name="rdConvenio" value="1.2" checked>
+            <label class="form-check-label" for="01">Amigo dos Animais</label>
+            <br>
+            <input class="-check-input" id="rdSaudeAnimal" type="radio" name="rdConvenio" value="1.5">
+            <label class="form-check-label" for="02">Saúde Animal</label>
+        </form>
+    
+
+        <div class="mt-4 col">
+            <button id="btnCalcular" type="button" class="btn btn-primary" onclick="CalcularPreco()">Calcular Preco</button>
+            <button id="btnLimpar" type="button" class="btn btn-secondary" onclick="LimparCampos()">Limpar</button>
+        </div>
+
+        <div class="mt-3">
+            <p class="mb-0 pb-0" id="lblDesconto"></p>
+            <p class="mt-0 pt-0" id="lblPrecoTotal"></p>
+        </div>
+    </div>
+</body>
+<script>
+    function PossuiConvenio(){
+        let possuiConvenio = document.getElementById('chkPossuiConvenio').checked;  
+
+        if (possuiConvenio) {
+            document.getElementById("formConvenios").style.visibility='visible';
+            return;
+        }
+
+        document.getElementById("formConvenios").style.visibility='hidden';
+    }
+
+    function CalcularDesconto(valor, taxaDesconto){
+        return valor * taxaDesconto;
+    }
+
+    function CalcularPreco(){
+        
+        desconto = 1.1;
+        
+        let possuiConvenio = document.getElementById('chkPossuiConvenio').checked;
+        let precoVacina = document.getElementById("numPrecoDaVacina").value;
+        
+        if (precoVacina <= 0 || isNaN(precoVacina)) {
+            document.getElementById("lblPrecoTotal").innerHTML = `Insira uma valor para calcular.`
+            return;
+        }
+
+        if (possuiConvenio) desconto = document.querySelector('input[name="rdConvenio"]:checked').value;
+
+        let precoLiquido = CalcularDesconto(precoVacina, desconto);
+
+        document.getElementById("lblDesconto").innerHTML = `Desconto: ${(desconto * 100 - 100).toFixed(0)}%`
+        document.getElementById("lblPrecoTotal").innerHTML = `Total: R$ ${precoLiquido.toFixed(2)}`
+    }
+
+</script>
+
+</html>

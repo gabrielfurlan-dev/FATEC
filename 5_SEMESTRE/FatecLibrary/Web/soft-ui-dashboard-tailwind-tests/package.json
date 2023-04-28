@@ -1,0 +1,9 @@
+{
+  "name": "soft-ui-dashboard-tailwind-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}

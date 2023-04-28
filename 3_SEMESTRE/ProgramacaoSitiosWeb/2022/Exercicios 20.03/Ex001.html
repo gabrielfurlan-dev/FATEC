@@ -1,0 +1,82 @@
+<!--
+    Faça  uma  função  que  calcule  a  média  das  notas  passadas
+    a  ela.  No  mínimo,  o usuário deve passar 2 notas. A função 
+    retornará a média de quantas notas forem passadas automaticamente.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex001</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body class="bg-black text-white">
+    <div class="container">
+        <h1 class="mt-3 mb-3">Média</h1>
+        
+        <div><input id="numNota" type="number" class="form-control bg-dark text-white" placeholder="insira uma nota"></div>
+        
+        <div class="mt-3 col">
+            <button id="btnAdicionarNota" type="button" class="btn btn-primary" onclick="ExibirNaTela()">Adicionar</button>
+            <button id="btnLimparLista" type="button" class="btn btn-secondary" onclick="LimparCampos(true)">Limpar</button>
+        </div>
+
+        <div class="mt-3">
+            <p class="" id="lblListaNotas"></p>
+            <p class="" id="lblResultadoMedia"></p>
+        </div>
+    </div>
+</body>
+<script>
+    var listaNotas = [];
+
+    function LimparCampos(limparLista){
+
+        if (limparLista) listaNotas = [];
+
+        document.getElementById("lblListaNotas").innerHTML = "";
+        document.getElementById("lblResultadoMedia").innerHTML = "";
+        document.getElementById("numNota").value = "";
+    }
+    
+    function AdicionarNota(nota){
+        LimparCampos(false);
+        listaNotas.push(nota);
+        MostrarLista();
+    }
+
+    function MostrarLista(){
+        for (let i = 0; i < listaNotas.length; i++) {
+            document.getElementById("lblListaNotas").innerHTML += `${i}ª Nota: ${listaNotas[i].toFixed(1)} <br>`;
+        }
+    }
+    
+    function CalcularMedia(){
+        let totalNotas = 0;
+
+        for (let i = 0; i < listaNotas.length; i++) {
+            totalNotas += listaNotas[i];
+        }
+
+        let totalMedia = totalNotas / listaNotas.length;
+
+        document.getElementById("lblResultadoMedia").innerHTML = `<hr><br>Media: ${totalMedia.toFixed(1)}`;
+    }
+    
+    function ExibirNaTela(){
+        nota = parseFloat(document.getElementById("numNota").value);
+                
+        if (nota < 0 || isNaN(nota)) {
+            LimparCampos(false)
+            document.getElementById("lblListaNotas").innerHTML += `Insira uma nota válida para continuar.`;
+            return;
+        }
+
+        AdicionarNota(nota);
+        CalcularMedia();
+    }
+</script>
+</html>

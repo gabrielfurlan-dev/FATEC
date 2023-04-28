@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de senha</title>
+</head>
+
+<style>
+    .formulario {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btnSubmit {
+        margin-top: 28px;
+        padding: 10px 25px;
+        border-radius: 5px;
+        border: 0px;
+        background-color: rgb(56, 167, 102);
+        color: #fff;
+
+    }
+
+    .textBox {
+        height: 28px;
+        border-radius: 5px;
+        border: 0px solid #fff;
+        background-color: rgb(61, 61, 61);
+        color: rgb(216, 241, 222);
+        font-size: 16px;
+    }
+
+    label {
+        margin-top: 10px;
+        font-size: large;
+    }
+
+    fieldset {
+        border: none;
+    }
+
+    form {
+        margin-top: 50px;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: rgb(20, 20, 20);
+        color: whitesmoke;
+    }
+</style>
+
+<body>
+    <form>
+        <fieldset>
+            <div class="formulario">
+                <label for="txtNome">Nome</label>
+                <input type="text" name="" id="txtNome" class="textBox">
+
+                <label for="txtEmail">Email</label>
+                <input type="email" name="" id="txtEmail" class="textBox">
+
+                <label for="txtSenha">Senha</label>
+                <input type="password" name="" id="txtSenha" onkeypress="validarSenha()" class="textBox">
+            </div>
+
+            <button type="submit" style="display: none;" class="btnSubmit" id="btnAlterarSenha">Enviar</button>
+        </fieldset>
+    </form>
+</body>
+
+<script>
+    // * deve ser diferente das 5 últimas passwords (fazer um array de com 5 senhas)
+    // * deve ter, pelo menos, 6 caracteres
+    // * deve ter, no máximo, 10 caracteres
+    // * deve ser diferente do usuario do endereço de e-mail
+    // * deve incluir letras maiúsculas, minúsculas e números
+    // * deve incluir um caracter que não seja uma letra ou um número
+
+    let senhasUtilizadas = ["Jorgin123#", "CleitonHasta2"];
+
+    function validarSenha() {
+        let senha = document.getElementById("txtSenha").value
+
+        try {
+            if (!senhasUtilizadas.find(senha)) {
+                alert("Senha já utilizada.");
+                return;
+            }
+        } catch (error) {
+
+            if (senha.length < 6 || senha.length > 10) {
+                alert("Senha deve conter entre 6 a 10 caracteres.");
+                return;
+            }
+
+            let email = document.getElementById("txtEmail").value;
+            if (senha == email) {
+                alert("Senha deve ser diferente do endereço de email.");
+                return;
+            }
+
+            if (!validarCaracteresDaSenha(senha)) {
+                alert("Senha deve conter caracteres especiais, numeros, letras maisculas e minusculas.")
+            }
+
+            document.getElementById("btnAlterarSenha").style.display = "block";
+        }
+    }
+
+    function validarCaracteresDaSenha(senha) {
+        let letrasMaiusculas = 0;
+        let letrasMinusculas = 0;
+        let numeros = 0;
+        let caracteresEspeciais = 0;
+
+        let arraySenha = senha.split("");
+
+        for (let index = 0; index < arraySenha.length; index++) {
+
+            let valorAscii = senha.charCodeAt(index)
+
+            //letras Maiusculas
+            if (valorAscii >= 65 && valorAscii <= 90) {
+                letrasMaiusculas++;
+            }
+            //letras Minusculas
+            if (valorAscii >= 97 && valorAscii <= 122) {
+                letrasMinusculas++;
+            }
+            //numeros
+            else if (valorAscii >= 48 && valorAscii <= 57) {
+                numeros++;
+            }
+            else {
+                caracteresEspeciais++;
+            }
+        }
+    };
+
+
+    if (letrasMinusculas > 0 && letrasMaiusculas > 0 && numeros > 0 && caracteresEspeciais > 0) return true;
+
+    return false;
+
+</script>
+
+</html>

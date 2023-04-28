@@ -1,0 +1,19 @@
+#Ferramentas a serem utilizadas:
+
+	- Azure DevOps: 
+		- Board: local onde serão visualizados os Work Items(Cards de desenvolvimento);
+		- Wiki: Onde estarão a documentação das políticas a serem seguidas pela equipe;
+		
+	- Miro:
+		- Criação de fluxogramas, para a documentação dos fluxos a serem seguidos pelo sistema;
+		
+	- MoveDesk:
+		- Plataforma para gerenciar solicitações de atendimentos, organizar os processos entre a
+		 equipe do suporte e as demais relacinadas;
+		- Organizar as informações cadastrais dos clientes;
+		 
+	- Daily:
+		- Reuniões diárias de mais ou menos 15 minutos, onde serão discutidos:
+			- (Time de desenvolviento): os eventuais impedimentos da Board;
+			- (Time de Suporte): Pendencias do(s) dias anteriores relacionado aos atendimentos 
+			além de ideias para agregar melhoras nos serviços e processos da equipe;

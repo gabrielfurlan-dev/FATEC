@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retornando Objetos</title>
+</head>
+<body>
+    <p>Informe a área do retangulo:</p>
+    <input type="number" id="numArea">
+    
+    <p>Informe o perimetro do retangulo:</p>
+    <input type="number" id="numPerimetro">
+    <br>
+    <br>
+    <button type="button" onclick="Exibir()">Calcular</button>
+</body>
+<script>
+
+    function Exibir(){
+
+        numArea = parseInt(document.getElementById('numArea').value)
+        numPerimetro = parseInt(document.getElementById('numPerimetro').value)
+
+        var retangulo = calculaRetangulo(numArea, numPerimetro);
+        alert(`Área: ${retangulo.area}`),
+        alert(`Perimetro: ${retangulo.perimetro}`)
+    }
+
+    function calculaRetangulo(base, Altura)
+    {
+        var valorArea = (base * Altura);
+        var valorPerimetro = (base + Altura) * 2
+
+        return{
+            area: valorArea,
+            perimetro: valorPerimetro
+        };
+    }
+</script>
+</html>

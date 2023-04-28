@@ -1,0 +1,21 @@
+###Project charter
+
+###Falta de profissionais qualificados
+Origem: Falta de incentivo, a mitificação a respeita da complexidade supostamente exigida nos cargos 
+Impacto: Software mal desenvolvido, e como ele epícentro do negócio consequentemente encontraremos dificuldades a fidelizar clientes e prosseguir com o projeto.
+Fundamentos: Através de conhecimentos adiquiridos das aulas de empreedodorismo, exemplos de empresas que fracassaram por conta disso e pesquisas.
+
+Dados estatísticos:
+Segundo o professor Ildeberto Aparecido Rodello, da Faculdade de Economia, Administração e Contabilidade de Ribeirão Preto (FEA-RP), “a quantidade de profissionais que são formados por ano não supera a demanda” exigida pelo processo de transformação digital que vivemos e essa defasagem pode piorar, já que a expectativa é de que, até 2024, o setor abra mais de 400 mil novas vagas. 
+
+
+### Jogo escolhido com queda de popularidade
+Origem: Exemplos recentes de jogos que tiveram muita popularidade e não conseguiram se sustentar devido a não investirem corretamente os recursos(tempo e dinheiro), desenvolvimento constante do produto e atenderem bem a comunidade.
+
+Impacto: É desperdiçado muitos recursos do projeto, clientes, e prejudicando seu alicerce.
+
+Fundamentos: O jogo seria nosso carro chefe, não há como sobreviver seu o nucleo do projeto.
+
+Dados estatísticos: 
+BlockBuster, faliram devido seu produto principal se tornarem obsoletos.
+

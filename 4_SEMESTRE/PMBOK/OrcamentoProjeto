@@ -1,0 +1,21 @@
+###Orçamento do projeto
+
+quantidade de mão de obra
+
+
+2 planilhas
+
+###Matrimonio
+Item de orçamento | qtd item | valor unitario | valor total  | fornecedores
+                  |          |                |              |
+     notebook     |     2    |      2.9k      |     5.8k     |  Carrefur, Casas Bahia, Kabum
+  servidor(cloud) |     1    |      10k       |     muito    |  Azure, Aws, Google Cloud
+
+
+###
+Tipo              | Qtd. horas | valor hora  |  valor total
+                  |            |             |     10k
+developers        |     960h   |   18.75réis |     18k
+marketer          |     740h   |   25.3réis  |     18.7k
+Garcia            |  infinity  |   0.0réis   |     0.0k
+

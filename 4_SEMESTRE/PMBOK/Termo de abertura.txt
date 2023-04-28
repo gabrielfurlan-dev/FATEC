@@ -1,0 +1,33 @@
+====================================
+
+	   Termo de abertura
+
+====================================
+
+Nome do projeto: Manhattam
+
+Objetivos do projeto: Desenvolvimento de um aplicativo com as caracteristicas x, que comporte x usuarios, em x tempos.-
+	R: Treinar gamers para que desenvolvam suas skills em jogos de cenário competitivo que abranja públicos de todas as idades,
+
+
+Justificativas do projeto: Motivo de querer desenvolver o projeto naquele assunto. (1 paragrado escrito em 3º pessoa)
+
+Nossas Metas: 
+	1 - O quê, em qual quantidade e em quanto tempo. (ex: desenvolver o back end, 1, em 2 meses) meta é derivada do objetivo
+	2 - 
+	3 - 
+	4 -
+
+Macro-visão do projeto(Ciclo de vida). Quais passos eu devo dar. Levantar o case antes do planejamento do projeto
+	1 - Ex: Conseguir a licença x
+	2 - Ex: Levantamento das necessidades dos clientes
+	3 -
+	
+O que pode restringir o sucesso do projeto. O que estão e o que não estão em seu controle, que pode atrasar o seu projeto
+	Restrição 1...
+	Restrição 2...
+
+Principais partes interessadas. StackHolders
+	STACKHOLDER								| EXPECTATIVA
+	- Cliente								  	| Com a solução proposta pelo projeto, a lentidão do sistema 														| atualmente em vigência seja solucionada
+

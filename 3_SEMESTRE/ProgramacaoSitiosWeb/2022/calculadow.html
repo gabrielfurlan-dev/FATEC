@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="bg-black text-white">
+
+    <div class="container mt-5">
+
+        <h1 class="mb-4">CarShopping</h1>
+
+        <div class="container">
+            <p>Nome do veículo</p>
+            <input type="text" class="form-control mb-3" id="txtModeloVeiculo"
+                placeholder="Informe o modelo do veiculo">
+        </div>
+        <div class="container">
+            <p>Ano de fabricacao</p>
+            <input type="number" class="form-control mb-3" id="numAnoFabricacao"
+                placeholder="Informe o ano de fabricacao">
+        </div>
+        <div class="container">
+            <p>Preço Proprietário</p>
+            <input type="number" class="form-control mb-3" id="numPrecoProprietario"
+                placeholder="Informe o Preço Proprietário">
+        </div>
+
+        <div class="container mt-5">
+            <button id="btnCalcular" class="btn btn-primary" onclick="ExibirResultados()">Exibir Resultados</button>
+        </div>
+
+        <div class="container mt-5">
+            <div id="lblModeloVeiculo"></div>
+            <div id="lblClassificacao"></div>
+            <div id="lblPrecoVenda"></div>
+            <div id="lblCatch"></div>
+        </div>
+    </div>
+</body>
+<script>
+    var anoAtual = new Date().getFullYear();
+
+    function LimparCampos(){
+        document.getElementById('lblModeloVeiculo').innerHTML = "";
+        document.getElementById('lblClassificacao').innerHTML = "";
+        document.getElementById('lblPrecoVenda').innerHTML = "";
+        document.getElementById('lblCatch').innerHTML = "";
+    }
+
+    function ExibirResultados() {
+        var modeloVeiculo = document.getElementById("txtModeloVeiculo").value
+        var precoProprietario = parseFloat(document.getElementById("numPrecoProprietario").value)
+        var anoFabricacao = parseInt(document.getElementById("numAnoFabricacao").value)
+
+        LimparCampos();
+
+        if (ValidarCampos(modeloVeiculo, precoProprietario, anoFabricacao)) {
+            document.getElementById('lblModeloVeiculo').innerHTML = `Modelo: ${modeloVeiculo}`;
+            CalcularPrecoVenda(precoProprietario);
+            ClassificarVeiculo(anoFabricacao, modeloVeiculo);
+        }
+    }
+
+    function ValidarCampos(modeloVeiculo, precoProprietario, anoFabricacao) {
+
+        if (modeloVeiculo == "" || modeloVeiculo == null || modeloVeiculo == undefined) {
+            document.getElementById('lblCatch').innerHTML = `Insira o modelo do veículo.`;
+            return false;
+        }
+        if (precoProprietario <= 0 || isNaN(precoProprietario) || precoProprietario == undefined) {
+            document.getElementById('lblCatch').innerHTML = `Informe um preço válido`;
+            return false;
+        }
+        if (anoFabricacao <= 0 || isNaN(anoFabricacao) || anoFabricacao > anoAtual) {
+            document.getElementById('lblCatch').innerHTML = `Insira um ano de fabricação válido.`;
+            return false;
+        }
+        return true;
+    }
+
+    function CalcularPrecoVenda(precoProprietario) {
+        var precoVenda = (precoProprietario * 1.1).toFixed(2);
+
+        document.getElementById('lblPrecoVenda').innerHTML = `Preço de venda: R$: ${precoVenda}`;
+    }
+
+    function ClassificarVeiculo(anoVeiculo, modeloVeiculo) {
+        var Classificação = anoVeiculo < anoAtual ? "Usado" : "Novo";
+
+        document.getElementById('lblClassificacao').innerHTML = `Classificação: ${Classificação}`;
+    }
+
+</script>
+
+</html>
