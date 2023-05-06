@@ -1,10 +1,10 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model Usuario {
@@ -36,9 +36,9 @@ model Produto {
   banner       String
   createdAt    DateTime? @default(now())
   updatedAt    DateTime  @default(now())
-  categoria    Categoria @relation(fields: [id_categoria], references: [id])
   id_categoria String
   items        Item[]
+  categoria    Categoria @relation(fields: [id_categoria], references: [id])
 
   @@map("produtos")
 }
@@ -61,10 +61,10 @@ model Item {
   quantidade Int
   createdAt  DateTime? @default(now())
   updatedAt  DateTime  @default(now())
-  pedido     Pedido    @relation(fields: [id_pedido], references: [id])
-  produto    Produto   @relation(fields: [id_produto], references: [id])
   id_pedido  String
   id_produto String
+  produto    Produto   @relation(fields: [id_produto], references: [id])
+  pedido     Pedido    @relation(fields: [id_pedido], references: [id])
 
   @@map("items")
 }

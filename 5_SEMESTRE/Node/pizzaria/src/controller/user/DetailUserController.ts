@@ -5,9 +5,12 @@ export class DetailUserController{
     async handle(req: Request, res: Response){
         const {nome, email, senha} = req.body
 
+        const user_id = req.user_id;
+        console.log(user_id);
+
         const detailUserService = new DetailUserService();
  
-        const user = await detailUserService.execute()
+        const user = await detailUserService.execute(req.user_id)
         
         return res.json(user)
     }

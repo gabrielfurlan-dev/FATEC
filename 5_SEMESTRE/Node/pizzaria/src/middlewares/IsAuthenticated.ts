@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken';
 
-
+interface Payload{
+    sub: string
+}
 
 export function IsAuthenticated(req: Request, res: Response, next: NextFunction) {
 
@@ -17,8 +19,10 @@ export function IsAuthenticated(req: Request, res: Response, next: NextFunction)
         const { sub } = verify(
             token,
             String(process.env.JWT_SECRET)
-        );
+        ) as Payload;
 
+        req.user_id = sub;
+            
         console.log(sub);
 
         return next();

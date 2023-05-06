@@ -22,7 +22,7 @@ export default function Login() {
       //   }).catch((error) => {
       //     alert(`Falha ao obter o login: ${error}`)
       //   })
-      navigation.navigate("product")
+      // navigation.navigate("product")
     }
   }
 
@@ -49,12 +49,12 @@ export default function Login() {
             <VStack space={3} mt="5">
               <FormControl>
                 <FormControl.Label>Email ID</FormControl.Label>
-                <TextInput onChange={(e) => setEmail(e)} />
+                {/* <TextInput onChange={(e) => setEmail(e)} /> */}
               </FormControl>
               <FormControl>
                 <FormControl.Label>Password</FormControl.Label>
                 <TextInput
-                  onChange={(e) => setPassword(e)}
+                  // onChange={(e) => setPassword(e)}
                   secureTextEntry
                 />
                 <Link _text={{

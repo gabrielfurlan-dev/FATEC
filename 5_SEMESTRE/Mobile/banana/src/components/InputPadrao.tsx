@@ -5,7 +5,7 @@ import { Text, Input } from 'native-base';
 export type props = {
     value: string,
     label: string,
-    placeHolder: string,
+    placeHolder?: string,
     type: "text" | "password";
     onChange: (value: string) => void
 }
@@ -18,7 +18,7 @@ export function InputPadrao({ value, label, placeHolder, type, onChange }: props
             <Input
                 marginBottom={2}
                 marginTop={1}
-                backgroundColor={'white'}
+                backgroundColor={'gray.100'}
                 borderColor={'white'}
                 placeholder={placeHolder}
                 value={value}
