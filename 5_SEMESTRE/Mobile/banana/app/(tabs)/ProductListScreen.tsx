@@ -61,7 +61,7 @@ const ProductListScreen: React.FC = () => {
       firebase.database().ref("produtos").child(item.id).update({
         nome: nomeEdit,
         marca: marcaEdit,
-        preco: precoEdit,
+        valor: precoEdit,
       });
       alert('Produto Atualizado!');
       return true;
