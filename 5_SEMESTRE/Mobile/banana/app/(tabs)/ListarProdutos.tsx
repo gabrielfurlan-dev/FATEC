@@ -11,7 +11,7 @@ interface Product {
   preco: string;
 }
 
-const ProductListScreen: React.FC = () => {
+const ListarProdutos: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [editandoId, setEditandoId] = useState("");
 
@@ -113,7 +113,20 @@ const ProductListScreen: React.FC = () => {
     return (
       <View width={"full"} marginY={4}>
 
-        <Text marginBottom={4}>Edição</Text>
+        <View display={'flex'} flexDirection={'row'}>
+          <Text marginBottom={4}>Edição</Text>
+          <Spacer />
+          <Button
+            borderRadius={10}
+            backgroundColor={'white'}
+            onPress={() => {
+              setEditandoId("");
+              LimparCampos(item.nome, item.marca, item.preco);
+            }}
+          >
+            <XCircle size={16} />
+          </Button>
+        </View>
 
         <View marginBottom={10}>
           <InputPadrao label='Nome' onChange={setNameEdit} type='text' value={nomeEdit} />
@@ -122,36 +135,39 @@ const ProductListScreen: React.FC = () => {
         </View>
 
         <Flex flexDirection={'row'}>
+          
           <Button
             borderRadius={10}
-            backgroundColor={'green.500'}
+            backgroundColor={'white'}
             onPress={() => {
               setEditandoId("");
-              AtualizarProduto(item)
-              LimpaCampos(item.nome, item.marca, item.preco);
+              LimparCampos(item.nome, item.marca, item.preco);
             }}
           >
-            <Text color={'white'}>Salvar</Text>
+            <Text>Cancelar</Text>
           </Button>
 
           <Spacer />
 
           <Button
             borderRadius={10}
-            backgroundColor={'gray.300'}
+            width={100}
+            backgroundColor={'green.500'}
             onPress={() => {
               setEditandoId("");
-              LimpaCampos(item.nome, item.marca, item.preco);
+              AtualizarProduto(item)
+              LimparCampos(item.nome, item.marca, item.preco);
             }}
           >
-            <XCircle size={16} />
+            <Text color={'white'}>Salvar</Text>
           </Button>
+
         </Flex>
       </View>
     );
   }
 
-  function LimpaCampos(nome: string, marca: string, preco: string) {
+  function LimparCampos(nome: string, marca: string, preco: string) {
     setNameEdit(nome)
     setMarcaEdit(marca)
     setPrecoEdit(preco)
@@ -167,7 +183,16 @@ const ProductListScreen: React.FC = () => {
   );
 
   const handleDelete = (productId: string) => {
-    // Lógica para excluir um produto específico
+    firebase
+      .database()
+      .ref("produtos")
+      .child(productId)
+      .remove()
+      .then(() => {
+        const findProduct = products.filter((item) => item.id !== productId);
+        setProducts(findProduct);
+      });
+    alert("Produto excluído!");
   };
 
   return (
@@ -184,4 +209,4 @@ const ProductListScreen: React.FC = () => {
 
 };
 
-export default ProductListScreen;
+export default ListarProdutos;
