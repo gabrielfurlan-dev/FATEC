@@ -21,17 +21,7 @@ export default function CadastrarProdutos() {
       setMarca("");
       setPreco("");
     }
-    function atualizarProduto() {
-      firebase.database().ref('produtos').child(key).update({
-        nome: nome, marca: marca, valor: preco
-      })
-
-      Keyboard.dismiss();
-      alert('Produto Salvo!');
-      limparDados();
-      setKey('');
-      return;
-    }
+    
     function validarTodosCamposPreenchidos(): Boolean {
 
       function isConvertibleToNumber(value: string): boolean {

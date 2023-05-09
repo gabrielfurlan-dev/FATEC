@@ -6,7 +6,7 @@ interface UserRequest {
     senha: string,
 }
 
-class CreateUserService {
+export default class CreateUserService {
 
     async execute({ nome, email, senha }: UserRequest) {
 
@@ -41,5 +41,3 @@ class CreateUserService {
         return {usuario: nome};
     }
 }
-
-export { CreateUserService }
