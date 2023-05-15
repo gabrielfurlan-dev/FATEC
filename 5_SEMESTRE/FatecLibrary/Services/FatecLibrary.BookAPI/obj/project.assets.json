@@ -1690,19 +1690,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gabriel Furlan\\.nuget\\packages\\": {}
+    "C:\\Users\\gabri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\FATEC\\5_SEMESTRE\\FatecLibrary\\Services\\FatecLibrary.BookAPI\\FatecLibrary.BookAPI.csproj",
+      "projectUniqueName": "c:\\dev\\FATEC\\5_SEMESTRE\\FatecLibrary\\Services\\FatecLibrary.BookAPI\\FatecLibrary.BookAPI.csproj",
       "projectName": "FatecLibrary.BookAPI",
-      "projectPath": "C:\\dev\\FATEC\\5_SEMESTRE\\FatecLibrary\\Services\\FatecLibrary.BookAPI\\FatecLibrary.BookAPI.csproj",
-      "packagesPath": "C:\\Users\\Gabriel Furlan\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\FATEC\\5_SEMESTRE\\FatecLibrary\\Services\\FatecLibrary.BookAPI\\obj\\",
+      "projectPath": "c:\\dev\\FATEC\\5_SEMESTRE\\FatecLibrary\\Services\\FatecLibrary.BookAPI\\FatecLibrary.BookAPI.csproj",
+      "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+      "outputPath": "c:\\dev\\FATEC\\5_SEMESTRE\\FatecLibrary\\Services\\FatecLibrary.BookAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gabriel Furlan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1786,7 +1786,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
