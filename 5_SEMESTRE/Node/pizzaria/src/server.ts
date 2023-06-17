@@ -2,6 +2,8 @@ import express, { Request, Response, NextFunction } from 'express';
 import { router } from './router';
 import 'express-async-errors';
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
+import path from 'path'
 
 const prisma = new PrismaClient()
 
@@ -9,6 +11,11 @@ const app = express();
 
 app.use(express.json());
 app.use(router);
+
+app.use(
+    '/files'
+    express.static(path.resolve(__dirname, "..", "/temp"))
+)
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {

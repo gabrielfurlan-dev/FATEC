@@ -2,7 +2,7 @@ import { ProductRequest } from './../../services/product/CreateProductService';
 import { Request, Response } from 'express'
 import CreateProductService from '../../services/product/CreateProductService';
 
-class CreateProductController {
+export default class CreateProductController {
     async handle(req: Request, res: Response) {
         const { nome, preco, descricao, id_categoria } = req.body;
 

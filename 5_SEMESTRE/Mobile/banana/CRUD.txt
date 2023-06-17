@@ -1,0 +1,62 @@
+import { collection, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { db } from '../../src/services/connectionFirebase'; // Importe a instância do Firestore do seu arquivo de configuração
+
+// ...
+
+async function getPunches() {
+  try {
+    const punchesSnapshot = await getDocs(collection(db, 'pontos'));
+    const punchesData = punchesSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    setPunches(punchesData);
+  } catch (error) {
+    alert("Ocorreu um erro ao buscar os pontos.");
+  }
+}
+
+async function gravarPonto(ponto: Punch) {
+  try {
+    await addDoc(collection(db, 'pontos'), ponto);
+    alert('Ponto gravado!');
+    limparCampos("", "", "", "", ""); // Limpar campos após gravar
+  } catch (error) {
+    alert(`Não foi possível gravar o ponto. Erro: ${error}`);
+  }
+}
+
+async function atualizarPonto(item: Punch) {
+  if (!validarTodosCamposPreenchidos()) {
+    alert("Preencha todos os campos corretamente para atualizar o ponto.");
+    return false;
+  }
+
+  try {
+    const punchRef = doc(db, 'pontos', item.id);
+    await updateDoc(punchRef, {
+      nome: nomeEdit,
+      cargo: cargoEdit,
+      local: localEdit,
+      tipoPonto: tipoPontoEdit,
+      horaAtual: horaAtualEdit,
+    });
+    alert('Ponto atualizado!');
+    return true;
+  } catch (error) {
+    alert(`Não foi possível atualizar o ponto. Erro: ${error}`);
+    return false;
+  }
+}
+
+async function handleDelete(punchId: string) {
+  try {
+    const punchRef = doc(db, 'pontos', punchId);
+    await deleteDoc(punchRef);
+    const filteredPunches = punches.filter((item) => item.id !== punchId);
+    setPunches(filteredPunches);
+    alert('Ponto excluído!');
+  } catch (error) {
+    alert(`Não foi possível excluir o ponto. Erro: ${error}`);
+  }
+}

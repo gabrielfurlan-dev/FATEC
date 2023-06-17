@@ -9,6 +9,7 @@ import { DetailUserController } from './controller/user/DetailUserController';
 import { AuthUserController } from './controller/user/AuthUserController';
 import CreateCategoryController from './controller/category/CreateCategoryController';
 import ListCategoryController from './controller/category/ListCategoryController';
+import CreateProductController from './controller/product/CreateProductController'
 
 const router = Router();
 
@@ -25,6 +26,5 @@ router.get("/category", IsAuthenticated, new ListCategoryController().handle)
 
 //PRoduct
 router.post('/product', IsAuthenticated, upload.single('file'))
-
 
 export { router };

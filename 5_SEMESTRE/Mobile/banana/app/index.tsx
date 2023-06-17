@@ -6,6 +6,9 @@ import { InputPadrao } from '../src/components/InputPadrao';
 
 export default function Index() {
   const router = useRouter();
+
+  //Pular login
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -50,7 +53,7 @@ export default function Index() {
 
           </View>
 
-          <Button onPress={handleLogin} mt="2" colorScheme="indigo"> Sign in </Button>
+          <Button onPress={() => router.push('PaginaInicial')} mt="2" colorScheme="indigo"> Sign in </Button>
 
           <HStack mt="6" justifyContent="center">
             <Text>

@@ -3,7 +3,7 @@ import { Link, Tabs } from 'expo-router';
 import { Pressable, useColorScheme } from 'react-native';
 
 import Colors from '../../src/services/constants/Colors';
-import { House, ListDashes, Package, PlusCircle } from 'phosphor-react-native';
+import { Hand, HandPointing, House, ListDashes, Package, PlusCircle } from 'phosphor-react-native';
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
@@ -22,9 +22,9 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       }}>
       <Tabs.Screen
-        name="ListarProdutos"
+        name="ListarPontos"
         options={{
-          title: 'Listar',
+          title: 'Listar Pontos',
           tabBarIcon: ({ color }) => <ListDashes color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -52,10 +52,10 @@ export default function TabLayout() {
       />
       
       <Tabs.Screen
-        name="CadastrarProdutos"
+        name="BaterPonto"
         options={{
-          title: 'Cadastrar',
-          tabBarIcon: ({ color }) => <PlusCircle color={color} />,
+          title: 'Bater Ponto',
+          tabBarIcon: ({ color }) => <HandPointing color={color} />,
         }}
       />
     </Tabs>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulário de Cartão de Crédito</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        #cpf-document,
+        #credit-card-front,
+        #credit-card-back {
+            display: none;
+        }
+
+        .card-field {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .card-field input {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5 d-flex">
+        <div>
+            <h2>Formulário de Cartão de Crédito</h2>
+            <form id="credit-card-form">
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF"
+                        oninput="preencherCPF(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="name">Nome do Titular:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Digite o nome do titular"
+                        oninput="preencherNomeCartao(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Número do Cartão:</label>
+                    <input type="text" class="form-control" id="card-number" placeholder="Digite o número do cartão"
+                        oninput="preencherNumeroCartao(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="expiration-date">Data de Vencimento:</label>
+                    <input type="text" class="form-control" id="expiration-date" placeholder="MM/AA"
+                        oninput="preencherDataVencimento(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="Digite o CVV"
+                        oninput="preencherCVV(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="card-type">Nome do Cartão:</label>
+                    <select class="form-control" id="card-type" onchange="alterarTipoCartao(this.value)">
+                        <option value="amex">Amex</option>
+                        <option value="elo">Elo</option>
+                        <option value="mastercard">Mastercard</option>
+                        <option value="visa">Visa</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="exibirDocumentoCPF()">Documento de CPF</button>
+                <button type="button" class="btn btn-primary" onclick="exibirFrenteCartao()">Parte da Frente do
+                    Cartão</button>
+                <button type="button" class="btn btn-primary" onclick="exibirVersoCartao()">Parte de Trás do
+                    Cartão</button>
+            </form>
+        </div>
+
+        <div class="form-group" style="width: 300px; margin-left: 100px;">
+            <img id="cpf-document" style="display: none; width: 300px;  margin-top: 100px" src="cpf.png"
+                alt="CPF Document">
+            <img id="credit-card-front" style="display: none; width: 300px;  margin-top: 100px" src="cartao-frente.jpeg"
+                alt="Credit Card Front">
+            <img id="credit-card-back" style="display: none; width: 300px;  margin-top: 100px" src="cartao-tras.jpeg"
+                alt="Credit Card Back">
+
+            <img id="credit-card-logo" style="width: 30px; height: 30px;" src="cartoes/elo.png" alt="`logo">
+
+            <div class="card-field" style="top:0px;">
+                <input type="text" id="card-number-field" placeholder="Número do Cartão" readonly>
+            </div>
+            <div class="card-field" style="top:40px;">
+                <input type="text" id="card-name-field" placeholder="Nome do Titular" readonly>
+            </div>
+            <div class="card-field" style="top:0px;">
+                <input type="text" id="card-expiration-field" placeholder="Data de Vencimento" readonly>
+            </div>
+            <div class="card-field" style="top:40px;">
+                <input type="text" id="card-cvv-field" placeholder="CVV" readonly>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var cpf = document.getElementById('cpf').value;
+        var nome = document.getElementById('name').value;
+        var numeroCartao = document.getElementById('card-number').value;
+        var dataVencimento = document.getElementById('expiration-date').value;
+        var cvv = document.getElementById('cvv').value;
+
+        function preencherDados() {
+            cpf = document.getElementById('cpf').value;
+            nome = document.getElementById('name').value;
+            numeroCartao = document.getElementById('card-number').value;
+            dataVencimento = document.getElementById('expiration-date').value;
+            cvv = document.getElementById('cvv').value;
+        }
+
+        function preencherCPF() {
+            preencherDados()
+            document.getElementById('card-name-field').value = cpf;
+            exibirDocumentoCPF()
+        }
+
+        function preencherNomeCartao(value) {
+            preencherDados()
+            document.getElementById('card-name-field').value = nome;
+            exibirFrenteCartao()
+        }
+
+        function preencherNumeroCartao(value) {
+            preencherDados()
+            document.getElementById('card-number-field').value = numeroCartao;
+            exibirFrenteCartao()
+        }
+
+        function preencherDataVencimento(value) {
+            preencherDados()
+            document.getElementById('card-expiration-field').value = dataVencimento;
+            exibirVersoCartao()
+        }
+
+        function preencherCVV(value) {
+            preencherDados()
+            document.getElementById('card-cvv-field').value = cvv;
+            exibirVersoCartao()
+        }
+
+        function alterarTipoCartao(value) {
+
+            exibirVersoCartao()
+
+            const tipoCartao = value.toLowerCase();
+            const creditCardFront = document.getElementById('credit-card-logo').src = `./cartoes/${tipoCartao}.png`;
+
+
+        }
+
+        function exibirDocumentoCPF() {
+            const cpfDocument = document.getElementById('cpf-document');
+            cpfDocument.style.display = 'block';
+
+            const creditCardFront = document.getElementById('credit-card-front');
+            creditCardFront.style.display = 'none';
+
+            const creditCardBack = document.getElementById('credit-card-back');
+            creditCardBack.style.display = 'none';
+
+
+            document.getElementById('card-name-field').style.display = 'block';
+            document.getElementById('card-number-field').style.display = 'none';
+            document.getElementById('card-expiration-field').style.display = 'none';
+            document.getElementById('card-cvv-field').style.display = 'none';
+        }
+
+        function exibirFrenteCartao() {
+            const cpfDocument = document.getElementById('cpf-document');
+            cpfDocument.style.display = 'none';
+
+            const creditCardFront = document.getElementById('credit-card-front');
+            creditCardFront.style.display = 'block';
+
+            const creditCardBack = document.getElementById('credit-card-back');
+            creditCardBack.style.display = 'none';
+
+            document.getElementById('card-name-field').style.display = 'block';
+            document.getElementById('card-number-field').style.display = 'block';
+            document.getElementById('card-expiration-field').style.display = 'none';
+            document.getElementById('card-cvv-field').style.display = 'none';
+        }
+
+        function exibirVersoCartao() {
+            const cpfDocument = document.getElementById('cpf-document');
+            cpfDocument.style.display = 'none';
+
+            const creditCardFront = document.getElementById('credit-card-front');
+            creditCardFront.style.display = 'none';
+
+            const creditCardBack = document.getElementById('credit-card-back');
+            creditCardBack.style.display = 'block';
+
+
+            document.getElementById('card-name-field').style.display = 'none';
+            document.getElementById('card-number-field').style.display = 'none';
+            document.getElementById('card-expiration-field').style.display = 'block';
+            document.getElementById('card-cvv-field').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
