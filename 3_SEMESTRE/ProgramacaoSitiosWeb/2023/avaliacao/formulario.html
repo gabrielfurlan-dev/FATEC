@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Validação de Formulários</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Validação de Formulários</h2>
+    <form>
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" placeholder="Joao Paulo" class="form-control" id="nome" required>
+        <p class="text-muted">Digite seu nome com pelo menos 3 caracteres.</p>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" placeholder="teste@teste.com" class="form-control" id="email" required>
+        <p class="text-muted">Digite um email válido.</p>
+      </div>
+      <div class="form-group">
+        <label for="cep">CEP:</label>
+        <input type="text" class="form-control" id="cep" placeholder="12345-678" required onkeyup="formatarCep(this.value)">
+        <p class="text-muted">Digite um CEP válido (exemplo: 12345-678).</p>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    <div id="mensagem" class="mt-4" style="display: none;"></div>
+  </div>
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var nome = document.getElementById('nome').value;
+      var email = document.getElementById('email').value;
+      var cep = document.getElementById('cep').value;
+
+      if (nome.length < 3) {
+        alert('O nome deve ter pelo menos 3 caracteres.');
+      } else if (!validarEmail(email)) {
+        alert('Digite um email válido.');
+      } else if (!validarCep(cep)) {
+        alert('Digite um CEP válido (exemplo: 12345-678).');
+      } else {
+        exibirMensagem('Formulário enviado com sucesso!');
+        document.querySelector('form').reset();
+      }
+    });
+
+    function validarEmail(email) {
+      var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regexEmail.test(email);
+    }
+
+    function validarCep(cep) {
+      var regexCep = /^\d{5}-\d{3}$/;
+      return regexCep.test(cep);
+    }
+
+    function exibirMensagem(mensagem) {
+      var elementoMensagem = document.getElementById('mensagem');
+      elementoMensagem.textContent = mensagem;
+      elementoMensagem.style.display = 'block';
+    }
+
+    function formatarCep(cep) {
+      cep = cep.replace(/\D/g, '');
+      cep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+      document.getElementById('cep').value = cep;
+    }
+  </script>
+</body>
+</html>

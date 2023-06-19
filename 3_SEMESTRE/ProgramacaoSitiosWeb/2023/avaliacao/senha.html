@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cadastro de Senha - Regras</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Cadastro de Senha - Regras</h2>
+    <form>
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" class="form-control" id="password">
+      </div>
+      <button type="button" class="btn btn-primary" onclick="validarSenha()">Cadastrar</button>
+    </form>
+    <div id="resultado" class="mt-4"></div>
+  </div>
+  <script>
+    function validarSenha() {
+      var senha = document.getElementById('password').value;
+      var regexEspeciais = /[!@#$%^&*(),.?":{}|<>]/g;
+      var regexNumeros = /[0-9]/g;
+      var regexMaiuscula = /[A-Z]/g;
+      var regexMinuscula = /[a-z]/g;
+
+      if (senha.length < 6 || senha.length > 8) {
+        document.getElementById('resultado').innerHTML = 'A senha deve ter entre 6 e 8 caracteres.';
+      } else if (!senha.match(regexEspeciais) || senha.match(regexEspeciais).length < 2) {
+        document.getElementById('resultado').innerHTML = 'A senha deve conter pelo menos 2 caracteres especiais.';
+      } else if (!senha.match(regexNumeros)) {
+        document.getElementById('resultado').innerHTML = 'A senha deve conter pelo menos 1 número.';
+      } else if (!senha.match(regexMaiuscula) || !senha.match(regexMinuscula)) {
+        document.getElementById('resultado').innerHTML = 'A senha deve conter pelo menos uma letra maiúscula e uma letra minúscula.';
+      } else {
+        document.getElementById('resultado').innerHTML = 'Senha válida. Cadastro efetuado com sucesso!';
+        document.getElementById('password').value = ''
+      }
+    }
+  </script>
+</body>
+</html>

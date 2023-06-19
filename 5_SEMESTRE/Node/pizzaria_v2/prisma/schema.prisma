@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id String @id @default(uuid())
+  name String @map("nome")
+  email String
+  password String @map("senha")
+  created_at DateTime? @default(now()) @map("criado_em")
+  updated_at DateTime? @default(now()) @map("modificado_em")
+
+  @@map("usuarios")
+}
+
+model Categoria{
+  id String @id @default(uuid())
+  name String  @map("nome")
+  created_at DateTime? @default(now()) @map("criado_em")
+  updated_at DateTime? @default(now()) @map("modificado_em")
+
+  @@map("categorias")
+  produtos Produto[]
+}
+
+model Produto{
+  id String @id @default(uuid())
+  name String @map("nome")
+  price String @map("preco")
+  description String @map("descricao")
+  banner String
+  created_at DateTime? @default(now()) @map("criado_em")
+  updated_at DateTime? @default(now()) @map("modificado_em")
+
+  categoria Categoria @relation(fields: [id_category], references: [id])
+
+  @@map("produtos")
+  id_category String @map("id_categoria")
+
+  items Item[]
+}
+
+model Pedido{
+  id String @id @default(uuid())
+  table Int @map("mesa")
+  status Boolean @default(false)
+  draw Boolean @default(true) @map("rascunho")
+  name String? @map("nome")
+
+  created_at DateTime? @default(now()) @map("criado_em")
+  updated_at DateTime? @default(now()) @map("modificado_em")
+
+  @@map("pedidos")
+
+  items Item[]
+}
+
+model Item{
+  id String @id @default(uuid())
+  quantity Int @map("quantidade")
+  
+  created_at DateTime? @default(now()) @map("criado_em")
+  updated_at DateTime? @default(now()) @map("modificado_em")
+
+  pedido Pedido @relation(fields: [Id_order], references: [id])
+  produto Produto @relation(fields: [id_product], references: [id])
+
+  @@map("items")
+  Id_order String @map("id_pedido")
+  id_product String @map("id_produto")
+
+}
+
+
