@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verificação de Senha</title>
+
+
+    <style>
+        #condicoes {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .condicao-atendida {
+            color: green;
+        }
+        .condicao-nao-atendida {
+            color: red;
+        }
+    </style>
+
+
+
+    <script>
+        var condicoesAtendidas = [];
+        var condicoesNaoAtendidas = ["A senha deve ter entre 6 e 8 caracteres.", "A senha deve ter letras maiúsculas e minúsculas.", "A senha deve ter números.", "A senha deve ter símbolos (caracteres especiais)."];
+
+        function verificarSenha() {
+            var senha = document.getElementById("senha").value;
+            var senhaValida = true;
+            var mensagem = "";
+
+            condicoesAtendidas = [];
+            
+
+
+            condicoesNaoAtendidas = [];
+
+            if (senha.length < 6 || senha.length > 8) {
+                senhaValida = false;
+                console.log('senha' + senha.length)
+                condicoesNaoAtendidas.push("A senha deve ter entre 6 e 8 caracteres.");
+            } else {
+                condicoesAtendidas.push("A senha possui o tamanho correto.");
+            }
+
+            if (!temLetraMaiuscula(senha) || !temLetraMinuscula(senha)) {
+                senhaValida = false;
+                condicoesNaoAtendidas.push("A senha deve ter letras maiúsculas e minúsculas.");
+            } else {
+                condicoesAtendidas.push("A senha possui letras maiúsculas e minúsculas.");
+            }
+            if (!temNumero(senha)) {
+                senhaValida = false;
+                condicoesNaoAtendidas.push("A senha deve ter números.");
+            } else {
+                condicoesAtendidas.push("A senha possui números.");
+            }
+
+            if (!temSimbolo(senha)) {
+                senhaValida = false;
+                condicoesNaoAtendidas.push("A senha deve ter símbolos (caracteres especiais).");
+            } else {
+                condicoesAtendidas.push("A senha possui símbolos (caracteres especiais).");
+            }
+
+            exibirCondicoes(condicoesAtendidas, condicoesNaoAtendidas);
+        }
+
+        function temLetraMaiuscula(senha) {
+            for (var i = 0; i < senha.length; i++) {
+
+                if (senha[i] >= 'A' && senha[i] <= 'Z') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function temLetraMinuscula(senha) {
+            for (var i = 0; i < senha.length; i++) {
+
+                if (senha[i] >= 'a' && senha[i] <= 'z') {
+                    return true;
+
+                }
+            }
+            return false;
+        }
+
+        function temNumero(senha) {
+            for (var i = 0; i < senha.length; i++) {
+                if (senha[i] >= '0' && senha[i] <= '9') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function temSimbolo(senha) {
+            var simbolos = ["!", "@", "#", "$", "%", "&", "*", "_"];
+            for (var i = 0; i < senha.length; i++) {
+                if (simbolos.indexOf(senha[i]) !== -1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function exibirCondicoes(condicoesAtendidas, condicoesNaoAtendidas) {
+            var condicoesElement = document.getElementById("condicoes");
+            condicoesElement.innerHTML = "";
+
+            for (var i = 0; i < condicoesAtendidas.length; i++) {
+                var condicaoAtendidaElement = document.createElement("div");
+                condicaoAtendidaElement.classList.add("condicao-atendida");
+                condicaoAtendidaElement.textContent = condicoesAtendidas[i];
+                condicoesElement.appendChild(condicaoAtendidaElement);
+            }
+
+            for (var i = 0; i < condicoesNaoAtendidas.length; i++) {
+                var condicaoNaoAtendidaElement = document.createElement("div");
+                condicaoNaoAtendidaElement.classList.add("condicao-nao-atendida");
+                condicaoNaoAtendidaElement.textContent = condicoesNaoAtendidas[i];
+                condicoesElement.appendChild(condicaoNaoAtendidaElement);
+            }
+        }
+
+        function enviar(){
+            console.log(condicoesNaoAtendidas.length)
+            if (condicoesNaoAtendidas.length > 0){
+                alert("A senha precisa estar válida para continuar.")
+                exibirCondicoes(condicoesAtendidas, condicoesNaoAtendidas);
+            }else{
+                alert('Senha cadastrada com sucesso!')
+                limpar()
+            }
+        }
+
+        function limpar(){
+            document.getElementById('senha').value = ''
+            verificarSenha()
+        }
+    </script>
+
+
+</head>
+<body>
+    <h2>CADASTRE SUA SENHA!!! </h2>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" onkeyup="verificarSenha()">
+        <div id="condicoes"></div>
+
+        <br><br>
+        <button onclick="enviar()">Enviar</button>
+        <button onclick="limpar()">Limpar</button>
+</body>
+</html>
