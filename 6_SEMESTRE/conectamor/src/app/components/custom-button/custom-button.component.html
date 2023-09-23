@@ -1,0 +1,21 @@
+<div class="flex w-full" [style]="{ justifyContent: button_align }">
+  <button
+    class="flex items-center rounded-2xl p-2 px-6 gap-2 relative hover:opacity-90 bg-primary-1"
+    [style]="{
+      backgroundColor: colors[severity],
+      width: full_size ? '100%' : 'max-content',
+      flexDirection: icon_align === 'left' ? 'row' : 'row-reverse',
+    }"
+    [ngStyle]="style"
+    (click)="onClick()"
+  >
+    <i
+      [hidden]="icon === ''"
+      class="ph-bold ph-{{ icon }} text-xl text-white"
+    ></i>
+
+    <span class="flex flex-1 justify-center text-white text-lg font-poppins">
+      {{ text }}
+    </span>
+  </button>
+</div>

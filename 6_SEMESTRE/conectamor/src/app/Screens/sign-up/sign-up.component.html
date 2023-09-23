@@ -1,0 +1,51 @@
+<div
+    class="min-h-screen bg-cover h-full bg-white  w-full flex justify-center items-center dark:bg-black flex-col dark:text-white">
+
+    <app-logo></app-logo>
+    <div class="flex items-center w-96 flex-col mt-4  ">
+        <h1 class="font-montserrat text-4xl">Junte-se a nós</h1>
+        <h2 class="mt-2 ">Insira seus dados abaixo</h2>
+    </div>
+
+    <div class="flex items-start w-96 mt-16 flex-col  mb-8">
+        <label for="usuario" class="ml-2">Usuário</label>
+        <app-custom-input icon="ph ph-user"
+            input_id="usuario"
+            input_placeholder="Digite seu usuário"></app-custom-input>
+        <label for="senha" class="ml-2 mt-2">Senha</label>
+        <app-custom-input icon="ph ph-lock-simple" input_type="password"
+            input_id="senha"
+            input_placeholder="Digite sua senha"></app-custom-input>
+        <label for="repeat_senha" class="ml-2 mt-2">Repetir Senha</label>
+        <app-custom-input input_id="repeat_senha" icon="ph ph-lock-simple"
+            input_type="password"
+            input_placeholder="Digite sua senha"></app-custom-input>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+        <a href="#" class="text-sm font-thin underline ">Esqueceu sua senha?</a>
+        <app-custom-button text="Cadastrar-se" severity="info"
+            [style]="{width: '20rem', marginTop: '1rem'}"></app-custom-button>
+        <p href="#" class="text-sm font-thin  mt-4">Já possui uma conta?
+            <a href="#"
+                class="text-sm text-primary-1 underline ml font-semibold ">
+                Entre</a></p>
+    </div>
+
+    <div class="flex flex-row items-center mt-12 ">
+        <input id="checked-checkbox" type="checkbox" value
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+        <div class="flex flex-row justify-between ">
+            <p class="ml-2 text-sm font-thin ">Ao prosseguir eu concordo com os
+                termos de uso.</p>
+        </div>
+    </div>
+
+    <div
+        class="text-sm font-thin text-center mt-4 ">
+        <p>
+            No conectamor, a solidariedade é a moeda mais valiosa. Una-se <br />
+            a nós e faça parte de uma comunidade dedicada a espalhar o <br />
+            amor através de doações. Conecte-se, doe e inspire!
+        </p >
+    </div>
+</div>
